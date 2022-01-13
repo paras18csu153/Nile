@@ -1,0 +1,33 @@
+html,
+body {
+  font-family: "Lora", serif;
+  height: 100vh;
+  margin: 0;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  background-image: none;
+  -webkit-background-size: none;
+  -moz-background-size: none;
+  -o-background-size: none;
+  background-size: none;
+}
+
+#app .navbar {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+#hero-container {
+  padding: 0%;
+}
+
+#login {
+  color: #636b6f;
+  padding: 14px 15px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
