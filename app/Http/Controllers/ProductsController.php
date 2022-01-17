@@ -44,4 +44,13 @@ class ProductsController extends Controller
 
         return redirect('/home');
     }
+
+    public function get(Request $request, $id){
+        $productService = new ProductsService();
+        $product = $productService->get($id);
+
+        return view('products.view', [
+            'product' => $product
+        ]);
+    }
 }

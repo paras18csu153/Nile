@@ -23,3 +23,4 @@ Route::get('/seller/dashboard', 'SellerDashboardController@index')->name('seller
 
 Route::get('/p/create', 'ProductsController@create');
 Route::post('/p', 'ProductsController@store');
+Route::get('/p/{id}', 'ProductsController@get');

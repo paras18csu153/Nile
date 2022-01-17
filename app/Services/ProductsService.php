@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use Auth;
+use App\Models\Product;
 
 class ProductsService{
     private $id;
@@ -87,6 +88,11 @@ class ProductsService{
                 'quantity' => $this->quantity,
                 'image' => $this->image
         ]);
+    }
+
+    public function get($id){
+        $product = Product::findOrFail($id);
+        return $product;
     }
 }
 ?>
