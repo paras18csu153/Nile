@@ -34,11 +34,12 @@ class ProductsController extends Controller
         $productService->setAdditionalInformation($request['additionalInformation']);
         $productService->setPrice($request['price']);
         $productService->setQuantity($request['quantity']);
-        $productService->setImage($request['image']);
+
+        $imgPath = $request['image']->store('uploads', 'public');
+        $productService->setImage($imgPath);
 
         $productService->create();
 
-        dd($request->all());
-        return view('products.create');
+        return redirect('/home');
     }
 }
