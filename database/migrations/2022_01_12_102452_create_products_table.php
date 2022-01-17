@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('name', 100);
             $table->text('description');
             $table->text('additionalInformation')->nullable();
+            $table->text('category');
             $table->float('price', 7);
             $table->float('quantity');
             $table->timestamps();

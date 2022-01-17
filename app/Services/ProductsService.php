@@ -8,6 +8,7 @@ class ProductsService{
     private $name;
     private $description;
     private $additionalInformation;
+    private $category;
     private $price;
     private $quantity;
     private $image;
@@ -44,6 +45,14 @@ class ProductsService{
         $this->additionalInformation = $additionalInformation;
     }
 
+    function getCategory() {
+        return $this->category;
+    }
+
+    function setCategory($category) {
+        $this->category = $category;
+    }
+
     function getPrice() {
         return $this->price;
     }
@@ -73,6 +82,7 @@ class ProductsService{
                 'name' => $this->name,
                 'description' => $this->description,
                 'additionalInformation' => $this->additionalInformation,
+                'category' => $this->category,
                 'price' => $this->price,
                 'quantity' => $this->quantity,
                 'image' => $this->image

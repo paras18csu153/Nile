@@ -22,6 +22,7 @@ class ProductsController extends Controller
             'name' => 'required|string|max:100',
             'description' => 'required|string',
             'additionalInformation' => '',
+            'category' => 'required|string',
             'price' => 'required|numeric|max:999999',
             'quantity' => 'required|numeric',
             'image' => 'required|image'
@@ -32,6 +33,7 @@ class ProductsController extends Controller
         $productService->setName($request['name']);
         $productService->setDescription($request['description']);
         $productService->setAdditionalInformation($request['additionalInformation']);
+        $productService->setCategory($request['category']);
         $productService->setPrice($request['price']);
         $productService->setQuantity($request['quantity']);
 

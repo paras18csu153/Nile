@@ -77,7 +77,49 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3 col-md-offset-5">
+            <div class="col-md-4 col-md-offset-1">
+                <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+                    <label for="category" class="col-md-4 control-label">Category</label>
+
+                    <select name="category" id="category"  class="form-control" required>
+                        <option disabled selected value=""> -- Select a Category -- </option>
+                        <option value="Mobile & Accessories">Mobile & Accessories</option>
+                        <option value="Personal health, grooming & wellness">Personal health, grooming & wellness</option>
+                        <option value="Electronics & accessories">Electronics & accessories</option>
+                        <option value="Computers & accessories">Computers & accessories</option>
+                        <option value="TVs, Appliances">TVs, Appliances</option>
+                        <option value="Women's Fashion">Women's Fashion</option>
+                        <option value="Men's Fashion">Men's Fashion</option>
+                        <option value="Kid's Fashion">Kid's Fashion</option>
+                        <option value="Home & Kitchen">Home & Kitchen</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Grocery & Gourment">Grocery & Gourment</option>
+                        <option value="Beauty & Luxury beauty">Beauty & Luxury beauty</option>
+                        <option value="Health & household">Health & household</option>
+                        <option value="Sports & Fitness">Sports & Fitness</option>
+                        <option value="Bags, Wallets & Luggage">Bags, Wallets & Luggage</option>
+                        <option value="Toys & Games">Toys & Games</option>
+                        <option value="Baby Products">Baby Products</option>
+                        <option value="Pet Supplies">Pet Supplies</option>
+                        <option value="Car, Motorbike">Car, Motorbike</option>
+                        <option value="Industrial & Scientific supplies">Industrial & Scientific supplies</option>
+                        <option value="Home & electronics">Home & electronics</option>
+                        <option value="Daily essentials">Daily essentials</option>
+                        <option value="Books">Books</option>
+                        <option value="Video Games">Video Games</option>
+                        <option value="Software">Software</option>
+                        <option value="Gift Cards">Gift Cards</option>
+                    </select>
+
+                    @if ($errors->has('category'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('category') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-3">
                 <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
                     <label for="price" class="col-md-4 control-label">Price</label>
 
@@ -107,12 +149,12 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3 col-md-offset-5">
+            <div class="col-md-5 col-md-offset-1">
                 <button id="backToDashboard" type="reset" class="btn btn-primary" onclick="redirectToDashboard()">
                     Back To Dashboard
                 </button>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button id="addProduct" type="submit" class="btn btn-primary">
                     Add Product
                 </button>
