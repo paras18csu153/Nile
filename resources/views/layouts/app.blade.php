@@ -11,7 +11,7 @@
     <title>Nile</title>
 
     <!-- Title Logo -->
-    <link rel="icon" href="images/svgs/icon.svg" />
+    <link rel="icon" href="{{ asset('images/svgs/icon.svg') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/home') }}">
-                        <img src="images/svgs/icon.svg" alt="logo.svg" draggable="false">
+                        <img src="{{ asset('images/svgs/icon.svg') }}" alt="logo.svg" draggable="false">
                     </a>
                 </div>
 
