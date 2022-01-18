@@ -13,6 +13,16 @@
     </div>
 
     <div class="row">
+        <form class="col-md-12" method="GET" action="/p/all">
+            <select onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
+                <option value="">Select</option>
+                <option value="ASC">Price Low to High</option>
+                <option value="DESC">Price High to Low</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="row">
         <div class="col-md-6">
             <h1>Found {{ $products->total() }} results!!</h1>
         </div>
@@ -40,4 +50,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    function sortByPrice(){
+        console.log(this);
+    }
+</script>
 @endsection

@@ -57,6 +57,8 @@ class ProductsController extends Controller
     public function getAll(Request $request, $category = null){
         $productService = new ProductsService();
         
+        $productService->setSortPrice($request["sort_price"]);
+
         if($category){
             $productService->setCategory($category);
         }
@@ -64,7 +66,7 @@ class ProductsController extends Controller
         $products = $productService->getAll();
 
         return view('products.viewAll', [
-            'products' => $products
+            'products' => $products->appends(['sort_price' => $request["sort_price"]])
         ]);
     }
 }

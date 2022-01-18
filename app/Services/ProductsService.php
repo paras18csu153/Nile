@@ -10,6 +10,7 @@ class ProductsService{
     private $description;
     private $additionalInformation;
     private $category;
+    private $sortPrice;
     private $price;
     private $quantity;
     private $image;
@@ -52,6 +53,14 @@ class ProductsService{
 
     function setCategory($category) {
         $this->category = $category;
+    }
+
+    function getSortPrice() {
+        return $this->sortPrice;
+    }
+
+    function setSortPrice($sortPrice) {
+        $this->sortPrice = $sortPrice;
     }
 
     function getPrice() {
@@ -103,7 +112,11 @@ class ProductsService{
         }
 
         if(!$user || ($this->category && $user->role != 'SELLER')){
-            $products = Product::where('category', $this->category)->paginate(10);
+            if($this->sortPrice == 'DESC'){
+                $products = Product::where('category', $this->category)->orderBy('price', $this->sortPrice)->paginate(10);
+                return $products;
+            }
+            $products = Product::where('category', $this->category)->orderBy('price')->paginate(10);
             return $products;
         }
 
@@ -111,7 +124,12 @@ class ProductsService{
             abort(403, "Unauthorized Access!!");
         }
 
-        $products = $user->products()->paginate(10);
+        if($this->sortPrice == 'DESC'){
+            $products = $user->products()->orderBy('price', $this->sortPrice)->paginate(10);
+            return $products;
+        }
+        
+        $products = $user->products()->orderBy('price')->paginate(10);
         return $products;
     }
 }
