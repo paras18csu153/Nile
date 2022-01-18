@@ -9,8 +9,8 @@ use App\Http\Middleware\CheckIsSeller;
 class ProductsController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth');
-        $this->middleware(CheckIsSeller::class);
+        $this->middleware('auth')->except('getAll');
+        $this->middleware(CheckIsSeller::class)->except('getAll');
     }
 
     public function create(){
@@ -51,6 +51,20 @@ class ProductsController extends Controller
 
         return view('products.view', [
             'product' => $product
+        ]);
+    }
+
+    public function getAll(Request $request, $category = null){
+        $productService = new ProductsService();
+        
+        if($category){
+            $productService->setCategory($category);
+        }
+
+        $products = $productService->getAll();
+
+        return view('products.viewAll', [
+            'products' => $products
         ]);
     }
 }

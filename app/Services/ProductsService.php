@@ -94,5 +94,25 @@ class ProductsService{
         $product = Product::findOrFail($id);
         return $product;
     }
+
+    public function getAll(){
+        $user = Auth::user();
+
+        if(!$user && !$this->category){
+            abort(404);
+        }
+
+        if(!$user || ($this->category && $user->role != 'SELLER')){
+            $products = Product::where('category', $this->category)->paginate(10);
+            return $products;
+        }
+
+        if($this->category && $user->role == 'SELLER'){
+            abort(403, "Unauthorized Access!!");
+        }
+
+        $products = $user->products()->paginate(10);
+        return $products;
+    }
 }
 ?>
