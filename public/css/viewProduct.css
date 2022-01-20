@@ -1,3 +1,7 @@
+* {
+  color: black;
+}
+
 #hero-container {
   margin-top: 10rem;
 }
@@ -52,4 +56,5 @@ strong {
 #addProduct {
   width: 100%;
   margin-top: 10rem;
+  margin-bottom: 10rem;
 }
