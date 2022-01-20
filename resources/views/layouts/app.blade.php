@@ -57,7 +57,7 @@
                         @else
                             @if (Auth::guest())
                             <li><a id="login"href="{{ route('login') }}">Login</a></li>
-                            <form action="/cart" method="POST">
+                            <form action="/cart/products" method="POST">
                             {{ csrf_field() }}
                                 <input type="hidden" value="">
                                 <button><img src="{{ asset('images/svgs/cart.svg') }}" alt="Cart.svg"></button>

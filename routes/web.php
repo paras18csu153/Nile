@@ -29,7 +29,7 @@ Route::get('/p/{id}', 'ProductsController@get');
 Route::get('/cart', 'CartProductController@view');
 Route::post('/cart', 'CartController@store');
 
-Route::post('/cart', 'CartProductController@store');
+Route::post('/cart/products', 'CartProductController@store');
 Route::get('/cart/products', 'CartProductController@get');
 Route::post('/cart/product', 'CartProductController@updateQuantity');
 
