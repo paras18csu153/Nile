@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <h1>Search Product:</h1>
+    <h2>Search Product:</h2>
 
     <form class="row categorySearch" method="GET" action="/p/all">
         <div class="col-md-11">
@@ -70,7 +70,7 @@
         </div>
     </form>
 
-    <h2 class="col-md-offset-1">Select a Category:</h2>
+    <h3 class="col-md-offset-1">Select a Category:</h3>
 
     <div class="col-md-10 col-md-offset-1 pd-bot">
         <div class="row">
