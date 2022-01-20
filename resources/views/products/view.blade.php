@@ -79,7 +79,7 @@
                 </button>
             </div>
             <div class="col-md-5">
-                <form action="/cart" method="POST">
+                <form action="/cart/products" method="POST">
                 {{ csrf_field() }}
                     <input type="hidden" name="quantity" value="1">
                     <input type="hidden" name="id" value="{{ $product->id }}">

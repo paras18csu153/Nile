@@ -1,14 +1,15 @@
 @extends('layouts.app')
 
 @section('style')
-<!-- <link href="{{ asset('css/viewAllProduct.css') }}" rel="stylesheet"> -->
+<link href="{{ asset('css/cart.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
-    <div class="row">
-        <form class="col-md-12" method="GET" action="/p/all">
-            <select onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
-                <option value="">Select</option>
+    @if($products && count($products) > 0)
+    <div class="row no-margin">
+        <form class="col-md-10 col-md-offset-1" method="GET" action="/p/all">
+            <select onchange="this.form.submit()" class="pad" name="sort_price" aria-label="Default select example">
+                <option value="">Sort By Price</option>
                 <option value="ASC">Price Low to High</option>
                 <option value="DESC">Price High to Low</option>
             </select>
@@ -37,12 +38,16 @@
     </div>
     @endforeach
 
-    @if($products && count($products) > 0)
     <form action="/checkout" method="POST">
     {{ csrf_field() }}
     <input type="hidden" name="products" value="{{ $products }}">
     <button type="submit">Checkout</button>
     </form>
+    
+    @else
+    <div id="no-product-image">
+        <img src="https://www.plant4u.in/images/no-product-found.png" alt="No Product Image.jpg">
+    </div>
     @endif
 </div>
 
