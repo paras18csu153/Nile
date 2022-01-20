@@ -57,12 +57,12 @@
                         @else
                             @if (Auth::guest())
                             <li><a id="login"href="{{ route('login') }}">Login</a></li>
-                            @else
                             <form action="/cart" method="POST">
                             {{ csrf_field() }}
                                 <input type="hidden" value="">
                                 <button><img src="{{ asset('images/svgs/cart.svg') }}" alt="Cart.svg"></button>
                             </form>
+                            @else
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                         {{ Auth::user()->name }} <span class="caret"></span>
