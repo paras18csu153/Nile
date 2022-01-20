@@ -66,7 +66,8 @@ class ProductsController extends Controller
         $products = $productService->getAll();
 
         return view('products.viewAll', [
-            'products' => $products->appends(['sort_price' => $request["sort_price"]])
+            'products' => $products->appends(['sort_price' => $request["sort_price"]]),
+            'type' => $request["sort_price"]
         ]);
     }
 }

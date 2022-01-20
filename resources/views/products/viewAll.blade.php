@@ -19,11 +19,25 @@
 
     <div class="row">
         <form class="col-md-12" method="GET" action="/p/all">
-            <select onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
+            @if($type == 'ASC')
+            <select class="pad" onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
+                <option value="">Select</option>
+                <option value="ASC" selected>Price Low to High</option>
+                <option value="DESC">Price High to Low</option>
+            </select>
+            @elseif($type)
+            <select class="pad" onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
+                <option value="">Select</option>
+                <option value="ASC">Price Low to High</option>
+                <option value="DESC" selected>Price High to Low</option>
+            </select>
+            @else
+            <select class="pad" onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
                 <option value="">Select</option>
                 <option value="ASC">Price Low to High</option>
                 <option value="DESC">Price High to Low</option>
             </select>
+            @endif
         </form>
     </div>
 
