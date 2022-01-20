@@ -18,6 +18,6 @@ class CartController extends Controller
 
         $cartService->create();
 
-        return redirect('/home');
+        return redirect('/cart');
     }
 }

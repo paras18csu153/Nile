@@ -37,7 +37,8 @@ class CartProductService{
 
     public function create(){
         $product = Product::find($this->product_id);
-        $cart = Auth::user()->cart;
+        $user = Auth::user();
+        $cart = $user->cart;
         
         if(!$cart){
             $user->cart()->create([]);
