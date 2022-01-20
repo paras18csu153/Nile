@@ -20,7 +20,7 @@
 
                 <!-- Slide 1 -->
                 <div class="item active">
-                    <img src="https://images.unsplash.com/photo-1476044591369-74ee6ac6899c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHJhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="Sunset over beach" style="margin: auto;">
+                    <img src="https://m.media-amazon.com/images/I/71RcsKqM8oL._SX3000_.jpg" alt="Sunset over beach" style="margin: auto;">
                     <!-- <div class="carousel-caption">
                         <h3>Boracay</h3>
                         <p>White Sand Beach.</p>
@@ -29,7 +29,7 @@
 
                 <!-- Slide 2 -->
                 <div class="item">
-                    <img src="https://images.unsplash.com/photo-1639050642315-6b3ba06a5e59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=4096&q=60" alt="Rob Roy Glacier" style="margin: auto;">
+                    <img src="https://m.media-amazon.com/images/I/71C2P6wHlGL._SX3000_.jpg" alt="Rob Roy Glacier" style="margin: auto;">
                     <!-- <div class="carousel-caption">
                         <h3>Rob Roy Glacier</h3>
                         <p>You can almost touch it!</p>
@@ -38,7 +38,7 @@
 
                 <!-- Slide 3 -->
                 <div class="item">
-                    <img src="https://images.unsplash.com/photo-1476044591369-74ee6ac6899c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHJhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="Longtail boats at Phi Phi" style="margin: auto;">
+                    <img src="https://m.media-amazon.com/images/I/91AHUY9LSrL._SX3000_.jpg" alt="Longtail boats at Phi Phi" style="margin: auto;">
                     <!-- <div class="carousel-caption">
                         <h3>Phi Phi</h3>
                         <p>Longtail boats at Phi Phi.</p>
