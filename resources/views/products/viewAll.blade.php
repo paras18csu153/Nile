@@ -56,7 +56,7 @@
             <img id="dummy" src="/storage/{{ $product->image }}" alt="ProductImage.jpg" draggable="false">
         </div>
         <div class="col-md-6 productsText">
-            <h2>{{ $product->name }}</h2>
+            <h2><a href="/p/{{ $product->id }}">{{ $product->name }}</a></h2>
             <h4>{{ $product->description }}</h4>
             <h6>{{ $product->quantity }}</h6>
             <h6>₹ {{ $product->price }}</h6>
