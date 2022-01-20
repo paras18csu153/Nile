@@ -5,18 +5,6 @@
 @endsection
 
 @section('content')
-<div class="container">
-    @if(Auth::user()->role != 'SELLER')
-    <form class="row category" method="GET" action="/p/all">
-        <div class="col-md-11">
-            <input type="text" placeholder="Search in items posted by you..." class="pad" autocomplete="off"/>
-        </div>
-        <div class="col-md-1">
-            <button type="submit" class="pad" id="btn" onclick="changeAction()">Search</button>
-        </div>
-    </form>
-    @endif
-
     <div class="row">
         <form class="col-md-12" method="GET" action="/p/all">
             <select onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
@@ -27,14 +15,6 @@
         </form>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <h1>Found {{ $products->total() }} results!!</h1>
-        </div>
-        <div class="col-md-6" id="paginator">
-            {!! $products->render() !!}
-        </div>
-    </div>
     @foreach($products as $product)
     <div class="row products">
         <div class="col-md-6 productsImages">
@@ -45,15 +25,25 @@
             <h4>{{ $product->description }}</h4>
             <h6>{{ $product->quantity }}</h6>
             <h6>₹ {{ $product->price }}</h6>
+            <form action="/cart/product" method="POST">
+            {{ csrf_field() }}
+                <input type="hidden" name="type" id="type" value="">
+                <input type="hidden" name="id" value="{{ $product->id }}">
+                <button type="submit" onclick="setType('SUB')">minus</button>
+                <button>{{$product["pivot"]["quantity"]}}</button>
+                <button type="submit" onclick="setType('ADD')">add</button>
+            </form>
         </div>
     </div>
     @endforeach
 
-    <div class="row">
-        <div class="col-md-12" id="bottom-paginator">
-            {!! $products->render() !!}
-        </div>
-    </div>
+    @if($products && count($products) > 0)
+    <form action="/checkout" method="POST">
+    {{ csrf_field() }}
+    <input type="hidden" name="products" value="{{ $products }}">
+    <button type="submit">Checkout</button>
+    </form>
+    @endif
 </div>
 
 <script>
@@ -65,6 +55,11 @@
         var text = document.getElementsByClassName('pad')[0].value;
         var form = document.getElementsByClassName('category')[0];
         form.setAttribute('action', '/p/all/'+text);
+    }
+
+    function setType(i){
+        var input = document.getElementById('type');
+        input.setAttribute('value', i);
     }
 </script>
 @endsection

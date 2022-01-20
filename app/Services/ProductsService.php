@@ -113,10 +113,10 @@ class ProductsService{
 
         if(!$user || ($this->category && $user->role != 'SELLER')){
             if($this->sortPrice == 'DESC'){
-                $products = Product::where('category', $this->category)->orderBy('price', $this->sortPrice)->paginate(10);
+                $products = Product::where('name', 'like', $this->category.'%')->orWhere('category', 'like', $this->category.'%')->orderBy('price', $this->sortPrice)->paginate(10);
                 return $products;
             }
-            $products = Product::where('category', $this->category)->orderBy('price')->paginate(10);
+            $products = Product::where('name', 'like', $this->category.'%')->orWhere('category', 'like', $this->category.'%')->orderBy('price')->paginate(10);
             return $products;
         }
 
@@ -131,6 +131,10 @@ class ProductsService{
         
         $products = $user->products()->orderBy('price')->paginate(10);
         return $products;
+    }
+
+    public function updateQuantity(){
+        
     }
 }
 ?>

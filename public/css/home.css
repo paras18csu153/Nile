@@ -31,3 +31,24 @@ body {
   text-decoration: none;
   text-transform: uppercase;
 }
+
+.category {
+  margin: 0;
+}
+
+h1 {
+  padding-left: 15px;
+}
+
+.pad {
+  width: 100%;
+  padding: 5px 10px;
+}
+
+#btn {
+  background-color: lightblue;
+  color: black;
+  box-shadow: none;
+  outline: none;
+  border: none;
+}

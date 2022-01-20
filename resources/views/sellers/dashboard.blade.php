@@ -21,7 +21,7 @@
 
 <script>
     function redirectToaddProduct(){
-        location.href = '/p/create';
+        location.href = '/p';
     }
     function showMyAllProducts(){
         location.href = '/p/all';

@@ -72,10 +72,20 @@
         </div>
 
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-5 col-md-offset-1">
                 <button id="backToDashboard" type="reset" class="btn btn-primary" onclick="redirectToDashboard()">
                     Back To Dashboard
                 </button>
+            </div>
+            <div class="col-md-5">
+                <form action="/cart" method="POST">
+                {{ csrf_field() }}
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="id" value="{{ $product->id }}">
+                    <button type="submit" class="btn btn-primary">
+                        Add To Cart
+                    </button>
+                </form>
             </div>
         </div>
     </div>

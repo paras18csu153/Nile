@@ -58,5 +58,24 @@
             </a>
         </div>
     </div>
+
+    <h1>Search Product:</h1>
+
+    <form class="row category" method="GET" action="/p/all">
+        <div class="col-md-11">
+            <input type="text" placeholder="Search in items posted by you..." class="pad" autocomplete="off"/>
+        </div>
+        <div class="col-md-1">
+            <button type="submit" class="pad" id="btn" onclick="changeAction()">Search</button>
+        </div>
+    </form>
 </div>
+
+<script>
+    function changeAction(){
+        var text = document.getElementsByClassName('pad')[0].value;
+        var form = document.getElementsByClassName('category')[0];
+        form.setAttribute('action', '/p/all/'+text);
+    }
+</script>
 @endsection

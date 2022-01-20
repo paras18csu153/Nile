@@ -9,8 +9,8 @@ use App\Http\Middleware\CheckIsSeller;
 class ProductsController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth')->except('getAll');
-        $this->middleware(CheckIsSeller::class)->except('getAll');
+        $this->middleware('auth')->except('get', 'getAll');
+        $this->middleware(CheckIsSeller::class)->except('get', 'getAll');
     }
 
     public function create(){
