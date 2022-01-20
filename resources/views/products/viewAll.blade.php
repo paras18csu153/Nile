@@ -19,6 +19,7 @@
 
     <div class="row">
         <form class="col-md-12" method="GET" action="/p/all">
+            <input type="hidden" name="page" value="{{ app('request')->input('page') }}">
             @if($type == 'ASC')
             <select class="pad" onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
                 <option value="">Select</option>
