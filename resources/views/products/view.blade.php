@@ -71,6 +71,7 @@
             </div>
         </div>
 
+        @if(Auth::user()->role != 'SELLER')
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
                 <button id="backToDashboard" type="reset" class="btn btn-primary" onclick="redirectToDashboard()">
@@ -88,6 +89,15 @@
                 </form>
             </div>
         </div>
+        @else
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <button id="backToDashboard" type="reset" class="btn btn-primary" onclick="redirectToDashboard()">
+                    Back To Dashboard
+                </button>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 
