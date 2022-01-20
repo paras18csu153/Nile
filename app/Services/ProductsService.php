@@ -101,6 +101,12 @@ class ProductsService{
 
     public function get($id){
         $product = Product::findOrFail($id);
+        $user = Auth::user();
+        if($user->role="SELLER"){
+            if($product->user_id != $user->id){
+                abort(403, "Unauthorized Access.");
+            }
+        }
         return $product;
     }
 
