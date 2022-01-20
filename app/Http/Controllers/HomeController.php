@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Auth::user() && Auth::user()->role == "SELLER"){
+            return redirect('seller/dashboard');
+        }
         return view('home');
     }
 }

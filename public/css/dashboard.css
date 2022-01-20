@@ -3,9 +3,9 @@ body {
   font-family: "Lora", serif;
   height: 100vh;
   margin: 0;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background-image: none;
   -webkit-background-size: none;
   -moz-background-size: none;
@@ -18,10 +18,6 @@ body {
   padding-bottom: 0;
 }
 
-#hero-container {
-  padding: 0%;
-}
-
 #login {
   color: #636b6f;
   padding: 14px 15px;
@@ -32,23 +28,12 @@ body {
   text-transform: uppercase;
 }
 
-.category {
-  margin: 0;
+.hero-buttons {
+  margin-top: 2%;
 }
 
-h1 {
-  padding-left: 15px;
-}
-
-.pad {
+.hero-btn {
   width: 100%;
-  padding: 5px 10px;
-}
-
-#btn {
-  background-color: lightblue;
-  color: black;
-  box-shadow: none;
-  outline: none;
+  height: 50px;
   border: none;
 }

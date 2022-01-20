@@ -43,3 +43,11 @@ body {
   text-decoration: none;
   text-transform: uppercase;
 }
+
+.cart {
+  padding: 10px 15px;
+}
+
+.cart:hover {
+  cursor: pointer;
+}

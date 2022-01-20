@@ -11,7 +11,7 @@
     <title>Nile</title>
 
     <!-- Title Logo -->
-    <link rel="icon" href="images/svgs/icon.svg" />
+    <link rel="icon" href="{{ asset('images/svgs/icon.svg') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/home') }}">
-                        <img src="images/svgs/icon.svg" alt="logo.svg" draggable="false">
+                        <img src="{{ asset('images/svgs/icon.svg') }}" alt="logo.svg" draggable="false">
                     </a>
                 </div>
 
@@ -58,6 +58,11 @@
                             @if (Auth::guest())
                             <li><a id="login"href="{{ route('login') }}">Login</a></li>
                             @else
+                            <form action="/cart" method="POST">
+                            {{ csrf_field() }}
+                                <input type="hidden" value="">
+                                <button><img src="{{ asset('images/svgs/cart.svg') }}" alt="Cart.svg"></button>
+                            </form>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                         {{ Auth::user()->name }} <span class="caret"></span>
@@ -89,5 +94,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        function redirectToCart(){
+            this.form.submit();
+        }
+    </script>
 </body>
 </html>
