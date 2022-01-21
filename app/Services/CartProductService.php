@@ -59,8 +59,8 @@ class CartProductService{
         $cart = Auth::user()->cart;
         
         if(!$cart){
-            $cartService = new CartService();
-            $cartService->create();
+            $cart = new Cart();
+            $cart->create();
         }
         
         $products = $cart->products;
