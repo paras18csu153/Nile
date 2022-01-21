@@ -42,8 +42,15 @@ class CartProductController extends Controller
         $cartproductservice = new CartProductService();
         $products = $cartproductservice->get();
 
+        $total = 0;
+
+        foreach($products as $product){
+            $total = $total + (($product->price)*($product['pivot']['quantity']));
+        }
+
         return view('cart.cart', [
-            'products' => $products
+            'products' => $products,
+            'total' => $total
         ]);
     }
 }

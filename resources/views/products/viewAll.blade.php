@@ -27,7 +27,7 @@
                 <option value="ASC" selected>Price Low to High</option>
                 <option value="DESC">Price High to Low</option>
             </select>
-            @elseif($type)
+            @elseif($type == 'DESC')
             <select class="pad" onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
                 <option value="">Select</option>
                 <option value="ASC">Price Low to High</option>
