@@ -38,10 +38,10 @@
     </div>
     @endforeach
 
-    <form action="/checkout" method="POST">
+    <form class="col-md-10 col-md-offset-1" action="/checkout" method="POST">
     {{ csrf_field() }}
-    <input type="hidden" name="products" value="{{ $products }}">
-    <button type="submit">Checkout</button>
+        <input type="hidden" name="products" value="{{ $products }}">
+        <button class="pad btn-primary" id="checkout" type="submit">Checkout</button>
     </form>
     
     @else

@@ -120,3 +120,9 @@ strong {
   width: 10%;
   text-align: center;
 }
+
+#checkout {
+  margin-bottom: 2rem;
+  border: none;
+  outline: none;
+}
