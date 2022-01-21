@@ -43,10 +43,10 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
-            <h1>Found {{ $products->total() }} results!!</h1>
+        <div class="col-md-4">
+            <h3>Found {{ $products->total() }} results!!</h3>
         </div>
-        <div class="col-md-6" id="paginator">
+        <div class="col-md-8" id="paginator">
             {!! $products->render() !!}
         </div>
     </div>
