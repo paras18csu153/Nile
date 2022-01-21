@@ -17,6 +17,7 @@
     </form>
     @endif
 
+    @if($products && $products->total() > 0)
     <div class="row">
         <form class="col-md-12" method="GET" action="/p/all">
             <input type="hidden" name="page" value="{{ app('request')->input('page') }}">
@@ -69,6 +70,12 @@
             {!! $products->render() !!}
         </div>
     </div>
+
+    @else
+    <div id="no-product-image">
+        <img src="https://www.plant4u.in/images/no-product-found.png" alt="No Product Image.jpg">
+    </div>
+    @endif
 </div>
 
 <script>
