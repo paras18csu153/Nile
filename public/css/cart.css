@@ -69,7 +69,7 @@ strong {
 }
 
 .products {
-  margin: 10px;
+  margin: 10px 10%;
   padding: 10px;
   display: flex;
   flex-wrap: wrap;

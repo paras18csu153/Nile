@@ -48,6 +48,7 @@ class CartProductService{
         foreach($products as $p){
             if($p["id"] == $product->id){
                 DB::table('cart_product')->where(['cart_id'=>$cart->id, 'product_id'=>$p["id"]])->increment('quantity');
+                return;
             }
         }
 
@@ -56,6 +57,12 @@ class CartProductService{
 
     public function get(){
         $cart = Auth::user()->cart;
+        
+        if(!$cart){
+            $cartService = new CartService();
+            $cartService->create();
+        }
+        
         $products = $cart->products;
 
         return $products;
