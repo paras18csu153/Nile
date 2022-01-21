@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-    @if(Auth::user()->role != 'SELLER')
+    @if(Auth::user() && Auth::user()->role != 'SELLER')
     <form class="row category" method="GET" action="/p/all">
         <div class="col-md-11">
             <input type="text" placeholder="Search ..." class="pad" autocomplete="off"/>

@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        @if(Auth::user()->role != 'SELLER')
+        @if(Auth::user() && Auth::user()->role != 'SELLER')
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
                 <button id="backToDashboard" type="reset" class="btn btn-primary" onclick="redirectToDashboard()">
