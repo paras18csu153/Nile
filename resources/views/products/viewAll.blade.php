@@ -9,7 +9,7 @@
     @if(Auth::user() && Auth::user()->role != 'SELLER')
     <form class="row category" method="GET" action="/p/all">
         <div class="col-md-11">
-            <input type="text" placeholder="Search ..." class="pad" autocomplete="off"/>
+            <input type="text" placeholder="Search ..." class="pad" autocomplete="off" value="{{substr(Request::path(), strrpos(Request::path(), '/') + 1, strlen(Request::path()) - strrpos(Request::path(),'/') + 1)}}"/>
         </div>
         <div class="col-md-1">
             <button type="submit" class="pad" id="btn" onclick="changeAction()">Search</button>
@@ -19,7 +19,7 @@
 
     @if($products && $products->total() > 0)
     <div class="row">
-        <form class="col-md-12" method="GET" action="/p/all">
+        <form class="col-md-12" method="GET" action="{{substr(Request::path(), strrpos(Request::path(), '/') + 1, strlen(Request::path()) - strrpos(Request::path(),'/') + 1)}}">
             <input type="hidden" name="page" value="{{ app('request')->input('page') }}">
             @if($type == 'ASC')
             <select class="pad" onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
