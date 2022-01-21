@@ -115,3 +115,8 @@ strong {
 #no-product-image {
   text-align: center;
 }
+
+#quantity {
+  width: 10%;
+  text-align: center;
+}

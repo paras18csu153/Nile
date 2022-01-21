@@ -24,15 +24,15 @@
         <div class="col-md-6 productsText">
             <h2>{{ $product->name }}</h2>
             <h4>{{ $product->description }}</h4>
-            <h6>{{ $product->quantity }}</h6>
+            <h6>{{ $product->quantity }} left</h6>
             <h6>₹ {{ $product->price }}</h6>
             <form action="/cart/product" method="POST">
             {{ csrf_field() }}
                 <input type="hidden" name="type" id="type" value="">
                 <input type="hidden" name="id" value="{{ $product->id }}">
-                <button type="submit" onclick="setType('SUB')">minus</button>
-                <button>{{$product["pivot"]["quantity"]}}</button>
-                <button type="submit" onclick="setType('ADD')">add</button>
+                <button type="submit" onclick="setType('SUB')"><img src="{{ asset('images/svgs/sub.svg') }}" alt=""></button>
+                <input id="quantity" type="text" value="{{$product['pivot']['quantity']}}" disabled>
+                <button type="submit" onclick="setType('ADD')"><img src="{{ asset('images/svgs/add.svg') }}" alt=""></button>
             </form>
         </div>
     </div>
