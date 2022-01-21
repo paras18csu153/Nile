@@ -79,14 +79,9 @@
                 </button>
             </div>
             <div class="col-md-5">
-                <form action="/cart/products" method="POST">
-                {{ csrf_field() }}
-                    <input type="hidden" name="quantity" value="1">
-                    <input type="hidden" name="id" value="{{ $product->id }}">
-                    <button type="submit" class="btn btn-primary">
-                        Add To Cart
-                    </button>
-                </form>
+                <button id="addProduct" type="submit" class="btn btn-primary" onclick="event.preventDefault();document.getElementById('add-cart-form').submit();">
+                    Add To Cart
+                </button>
             </div>
         </div>
         @else
@@ -98,6 +93,11 @@
             </div>
         </div>
         @endif
+        <form id="add-cart-form" style="display:none" action="/cart/products" method="POST">
+        {{ csrf_field() }}
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="id" value="{{ $product->id }}">
+        </form>
     </div>
 </div>
 
