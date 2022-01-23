@@ -150,10 +150,6 @@ class Product extends Model
         return $products;
     }
 
-    public function updateQuantity(){
-        
-    }
-
     public function user(){
         return $this->belongsTo(User::class);
     }
