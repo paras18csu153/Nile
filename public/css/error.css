@@ -1,0 +1,12 @@
+.center {
+  margin: 17% 0px;
+}
+
+.exception {
+  display: flex;
+  justify-content: center;
+}
+
+#dash {
+  padding: 0px 10px;
+}

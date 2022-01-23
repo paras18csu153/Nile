@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\ProductsService;
+
 use App\Http\Middleware\CheckIsSeller;
+
+use App\Models\Product;
 
 class ProductsController extends Controller
 {
@@ -19,8 +21,8 @@ class ProductsController extends Controller
 
     public function store(Request $request){
         $data = $this->validate($request, [
-            'name' => 'required|string|max:100',
-            'description' => 'required|string',
+            'name' => 'required|string|min: 10|max:100',
+            'description' => 'required|string|min:50',
             'additionalInformation' => '',
             'category' => 'required|string',
             'price' => 'required|numeric|max:999999',
@@ -28,26 +30,26 @@ class ProductsController extends Controller
             'image' => 'required|image'
         ]);
 
-        $productService = new ProductsService();
+        $product = new Product();
 
-        $productService->setName($request['name']);
-        $productService->setDescription($request['description']);
-        $productService->setAdditionalInformation($request['additionalInformation']);
-        $productService->setCategory($request['category']);
-        $productService->setPrice($request['price']);
-        $productService->setQuantity($request['quantity']);
+        $product->setName($request['name']);
+        $product->setDescription($request['description']);
+        $product->setAdditionalInformation($request['additionalInformation']);
+        $product->setCategory($request['category']);
+        $product->setPrice($request['price']);
+        $product->setQuantity($request['quantity']);
 
         $imgPath = $request['image']->store('uploads', 'public');
-        $productService->setImage($imgPath);
+        $product->setImage($imgPath);
 
-        $productService->create();
+        $product->create();
 
         return redirect('/home');
     }
 
     public function get(Request $request, $id){
-        $productService = new ProductsService();
-        $product = $productService->get($id);
+        $product = new Product();
+        $product = $product->get($id);
 
         return view('products.view', [
             'product' => $product
@@ -55,18 +57,19 @@ class ProductsController extends Controller
     }
 
     public function getAll(Request $request, $category = null){
-        $productService = new ProductsService();
+        $product = new Product();
         
-        $productService->setSortPrice($request["sort_price"]);
+        $product->setSortPrice($request["sort_price"]);
 
         if($category){
-            $productService->setCategory($category);
+            $product->setCategory($category);
         }
 
-        $products = $productService->getAll();
+        $products = $product->getAll();
 
         return view('products.viewAll', [
-            'products' => $products->appends(['sort_price' => $request["sort_price"]])
+            'products' => $products->appends(['sort_price' => $request["sort_price"], 'page' => $request["page"]]),
+            'type' => $request["sort_price"]
         ]);
     }
 }

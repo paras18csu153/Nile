@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\CartService;
+use App\Http\Middleware\CheckIsBuyer;
+
+use App\Models\Cart;
 
 class CartController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+        $this->middleware(CheckIsBuyer::class);
+    }
+
     public function store(Request $request){
-        $cartService = new CartService();
+        $cart = new Cart();
 
-        $cartService->create();
+        $cart->create();
 
-        return redirect('/home');
+        return redirect('/cart');
     }
 }

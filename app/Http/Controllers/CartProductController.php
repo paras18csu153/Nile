@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\CartProductService;
+use App\Http\Middleware\CheckIsBuyer;
 
 class CartProductController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+        $this->middleware(CheckIsBuyer::class);
+    }
+
     public function store(Request $request){
         $cartproductservice = new CartProductService();
         $cartproductservice->setProduct_id($request["id"]);
@@ -36,8 +42,15 @@ class CartProductController extends Controller
         $cartproductservice = new CartProductService();
         $products = $cartproductservice->get();
 
+        $total = 0;
+
+        foreach($products as $product){
+            $total = $total + (($product->price)*($product['pivot']['quantity']));
+        }
+
         return view('cart.cart', [
-            'products' => $products
+            'products' => $products,
+            'total' => $total
         ]);
     }
 }

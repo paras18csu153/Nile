@@ -11,6 +11,11 @@ body {
   -moz-background-size: none;
   -o-background-size: none;
   background-size: none;
+  color: black;
+}
+
+.pd-bot {
+  padding-bottom: 3rem;
 }
 
 #app .navbar {
@@ -32,11 +37,11 @@ body {
   text-transform: uppercase;
 }
 
-.category {
+.categorySearch {
   margin: 0;
 }
 
-h1 {
+h2 {
   padding-left: 15px;
 }
 

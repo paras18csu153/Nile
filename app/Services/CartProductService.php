@@ -37,7 +37,8 @@ class CartProductService{
 
     public function create(){
         $product = Product::find($this->product_id);
-        $cart = Auth::user()->cart;
+        $user = Auth::user();
+        $cart = $user->cart;
         
         if(!$cart){
             $user->cart()->create([]);
@@ -47,6 +48,7 @@ class CartProductService{
         foreach($products as $p){
             if($p["id"] == $product->id){
                 DB::table('cart_product')->where(['cart_id'=>$cart->id, 'product_id'=>$p["id"]])->increment('quantity');
+                return;
             }
         }
 
@@ -55,6 +57,12 @@ class CartProductService{
 
     public function get(){
         $cart = Auth::user()->cart;
+        
+        if(!$cart){
+            $cart = new Cart();
+            $cart->create();
+        }
+        
         $products = $cart->products;
 
         return $products;

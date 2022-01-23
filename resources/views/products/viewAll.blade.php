@@ -6,10 +6,10 @@
 
 @section('content')
 <div class="container">
-    @if(Auth::user()->role != 'SELLER')
+    @if(Auth::user() && Auth::user()->role != 'SELLER')
     <form class="row category" method="GET" action="/p/all">
         <div class="col-md-11">
-            <input type="text" placeholder="Search in items posted by you..." class="pad" autocomplete="off"/>
+            <input type="text" placeholder="Search ..." class="pad" autocomplete="off" value="{{substr(Request::path(), strrpos(Request::path(), '/') + 1, strlen(Request::path()) - strrpos(Request::path(),'/') + 1)}}"/>
         </div>
         <div class="col-md-1">
             <button type="submit" class="pad" id="btn" onclick="changeAction()">Search</button>
@@ -17,21 +17,37 @@
     </form>
     @endif
 
+    @if($products && $products->total() > 0)
     <div class="row">
-        <form class="col-md-12" method="GET" action="/p/all">
-            <select onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
+        <form class="col-md-12" method="GET" action="{{substr(Request::path(), strrpos(Request::path(), '/') + 1, strlen(Request::path()) - strrpos(Request::path(),'/') + 1)}}">
+            <input type="hidden" name="page" value="{{ app('request')->input('page') }}">
+            @if($type == 'ASC')
+            <select class="pad" onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
+                <option value="">Select</option>
+                <option value="ASC" selected>Price Low to High</option>
+                <option value="DESC">Price High to Low</option>
+            </select>
+            @elseif($type == 'DESC')
+            <select class="pad" onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
+                <option value="">Select</option>
+                <option value="ASC">Price Low to High</option>
+                <option value="DESC" selected>Price High to Low</option>
+            </select>
+            @else
+            <select class="pad" onchange="this.form.submit()" name="sort_price" aria-label="Default select example">
                 <option value="">Select</option>
                 <option value="ASC">Price Low to High</option>
                 <option value="DESC">Price High to Low</option>
             </select>
+            @endif
         </form>
     </div>
 
     <div class="row">
-        <div class="col-md-6">
-            <h1>Found {{ $products->total() }} results!!</h1>
+        <div class="col-md-4">
+            <h3>Found {{ $products->total() }} results!!</h3>
         </div>
-        <div class="col-md-6" id="paginator">
+        <div class="col-md-8" id="paginator">
             {!! $products->render() !!}
         </div>
     </div>
@@ -41,9 +57,9 @@
             <img id="dummy" src="/storage/{{ $product->image }}" alt="ProductImage.jpg" draggable="false">
         </div>
         <div class="col-md-6 productsText">
-            <h2>{{ $product->name }}</h2>
+            <h2><a href="/p/{{ $product->id }}">{{ $product->name }}</a></h2>
             <h4>{{ $product->description }}</h4>
-            <h6>{{ $product->quantity }}</h6>
+            <h6>{{ $product->quantity }} left</h6>
             <h6>₹ {{ $product->price }}</h6>
         </div>
     </div>
@@ -54,6 +70,12 @@
             {!! $products->render() !!}
         </div>
     </div>
+
+    @else
+    <div id="no-product-image">
+        <img src="https://www.plant4u.in/images/no-product-found.png" alt="No Product Image.jpg">
+    </div>
+    @endif
 </div>
 
 <script>
