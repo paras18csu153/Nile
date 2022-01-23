@@ -19,6 +19,11 @@ class CheckIsBuyer
         if(Auth::user() && Auth::user()->role != "SELLER"){
             return $next($request);
         }
-        return redirect('/home');
+        else if(Auth::user()){
+            return redirect('seller/dashboard');
+        }
+        else{
+            return redirect('/home');
+        }
     }
 }

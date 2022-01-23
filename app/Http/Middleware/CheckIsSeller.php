@@ -16,9 +16,11 @@ class CheckIsSeller
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->role != "SELLER"){
+        if(Auth::user() && Auth::user()->role == "SELLER"){
+            return $next($request);
+        }
+        else{
             return redirect('/home');
         }
-        return $next($request);
     }
 }

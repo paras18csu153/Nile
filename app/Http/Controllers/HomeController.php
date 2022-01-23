@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Http\Middleware\CheckIsBuyer;
 
 class HomeController extends Controller
 {
@@ -18,11 +19,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct() {
+        $this->middleware(CheckIsBuyer::class)->except('get', 'getAll');
+    }
+     
     public function index()
     {
-        if(Auth::user() && Auth::user()->role == "SELLER"){
-            return redirect('seller/dashboard');
-        }
         return view('home');
     }
 }
