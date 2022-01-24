@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\Http\Middleware\CheckIsBuyer;
+use App\Http\Middleware\CheckGuest;
 
 class HomeController extends Controller
 {
@@ -21,7 +21,7 @@ class HomeController extends Controller
      */
 
     public function __construct() {
-        $this->middleware(CheckIsBuyer::class)->except('get', 'getAll');
+        $this->middleware(CheckGuest::class);
     }
      
     public function index()
