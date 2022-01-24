@@ -24,9 +24,8 @@ class Order extends Model
             ]);
     
             foreach($products as $p){
-                $p = Product::find($p["id"]);
-                $order->products()->attach($p, ['quantity'=> $p->carts()->where('cart_id', $cart->id)->first()->pivot->quantity]);
-                Product::find($p["id"])->update(["quantity" => ($p->quantity - $p->carts()->where('cart_id', $cart->id)->first()->pivot->quantity)]);
+                $p = (object)$p;
+                $order->products()->attach($p->id, ['quantity'=> $p->pivot['quantity']]);
             }
     
             $cart->products()->detach();
