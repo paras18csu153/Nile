@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Middleware\CheckIsSeller;
 
 use App\Models\Product;
+use Auth;
 
 class ProductsController extends Controller
 {
@@ -42,14 +43,16 @@ class ProductsController extends Controller
         $imgPath = $request['image']->store('uploads', 'public');
         $product->setImage($imgPath);
 
-        $product->create();
+        $user = Auth::user();
+        $product->create($user);
 
         return redirect('/home');
     }
 
     public function get(Request $request, $id){
         $product = new Product();
-        $product = $product->get($id);
+        $user = Auth::user();
+        $product = $product->get($id, $user);
 
         return view('products.view', [
             'product' => $product
@@ -65,7 +68,9 @@ class ProductsController extends Controller
             $product->setCategory($category);
         }
 
-        $products = $product->getAll();
+        $user = Auth::user();
+
+        $products = $product->getAll($user);
 
         return view('products.viewAll', [
             'products' => $products->appends(['sort_price' => $request["sort_price"], 'page' => $request["page"]]),

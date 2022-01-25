@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Auth;
 
 class Product extends Model
 {
@@ -93,8 +92,8 @@ class Product extends Model
         $this->image = $image;
     }
 
-    public function create(){
-        Auth::user()->products()->create([
+    public function create($user){
+        $user->products()->create([
                 'name' => $this->name,
                 'description' => $this->description,
                 'additionalInformation' => $this->additionalInformation,
@@ -105,10 +104,8 @@ class Product extends Model
         ]);
     }
 
-    public function get($id){
+    public function get($id, $user){
         $product = Product::findOrFail($id);
-
-        $user = Auth::user();
 
         if($user && $user->role=="SELLER"){
             if($product->user_id != $user->id){
@@ -119,8 +116,7 @@ class Product extends Model
         return $product;
     }
 
-    public function getAll(){
-        $user = Auth::user();
+    public function getAll($user){
 
         if(!$user && !$this->category){
             abort(404);
