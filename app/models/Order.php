@@ -11,20 +11,29 @@ class Order extends Model
         'payment_method', 'address'
     ];
 
-    public function create($request, $user){
-        DB::transaction(function ($request, $user) use ($request, $user) {
+    public function create($request){
+        DB::transaction(function ($request) use ($request) {
             $products = json_decode($request['products'], true);
 
-            $cart = $user->cart;
-            $order = $user->orders()->create([
+            $cart = $request->user->cart;
+            $order = $request->user->orders()->create([
                 'payment_method' => 'Cash On Delivery (COD)',
                 'address' => 'default'
             ]);
+
+            $data=[];
+            $entry=[];
     
             foreach($products as $p){
                 $p = (object)$p;
-                $order->products()->attach($p->id, ['quantity'=> $p->pivot['quantity']]);
+                $entry["order_id"] = $order->id;
+                $entry["product_id"] = $p->id;
+                $entry["quantity"] = $p->pivot['quantity'];
+                array_push($data, $entry);
+                $entry=[];
             }
+
+            DB::table("order_product")->insert($data);
     
             $cart->products()->detach();
         }, 5);

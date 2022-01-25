@@ -13,7 +13,9 @@ class CheckoutController extends Controller
         $order = new Order();
         $user = Auth::user();
 
-        $order->create($request, $user);
+        $request->user = $user;
+
+        $order->create($request);
 
         dispatch((new SendReminderEmail)->onQueue('highhello'));
         // dispatch((new SendReminderEmail));
