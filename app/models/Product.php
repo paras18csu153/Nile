@@ -116,7 +116,7 @@ class Product extends Model
         return $product;
     }
 
-    public function getAll($user){
+    public function getAllPaginatedProducts($user){
 
         if(!$user && !$this->category){
             abort(404);

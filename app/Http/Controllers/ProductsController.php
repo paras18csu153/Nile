@@ -12,8 +12,8 @@ use Auth;
 class ProductsController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth')->except('get', 'getAll');
-        $this->middleware(CheckIsSeller::class)->except('get', 'getAll');
+        $this->middleware('auth')->except('get', 'getAllPaginatedProducts');
+        $this->middleware(CheckIsSeller::class)->except('get', 'getAllPaginatedProducts');
     }
 
     public function create(){
@@ -59,7 +59,7 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function getAll(Request $request, $category = null){
+    public function getAllPaginatedProducts(Request $request, $category = null){
         $product = new Product();
         
         $product->setSortPrice($request["sort_price"]);
@@ -70,7 +70,7 @@ class ProductsController extends Controller
 
         $user = Auth::user();
 
-        $products = $product->getAll($user);
+        $products = $product->getAgetAllPaginatedProducts($user);
 
         return view('products.viewAll', [
             'products' => $products->appends(['sort_price' => $request["sort_price"], 'page' => $request["page"]]),
