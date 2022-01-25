@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Auth;
 use DB;
 
 class Order extends Model
@@ -12,10 +11,9 @@ class Order extends Model
         'payment_method', 'address'
     ];
 
-    public function create($request){
-        DB::transaction(function ($request) use ($request) {
+    public function create($request, $user){
+        DB::transaction(function ($request, $user) use ($request, $user) {
             $products = json_decode($request['products'], true);
-            $user = Auth::user();
 
             $cart = $user->cart;
             $order = $user->orders()->create([
