@@ -6,16 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    private $id;
-
-    function getId() {
-        return $this->id;
-    }
-
-    function setId($id) {
-        $this->id = $id;
-    }
-
     public function create($user){
         if(!$user->cart){
             try{
