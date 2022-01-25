@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Jobs\SendReminderEmail;
 
 class CheckoutController extends Controller
 {
@@ -12,6 +13,9 @@ class CheckoutController extends Controller
 
         $order->create($request);
 
+        dispatch((new SendReminderEmail)->onQueue('highhello'));
+        // dispatch((new SendReminderEmail));
+        // dispatch((new SendReminderEmail)->onQueue('low'));
         return redirect('home');
     }
 }
