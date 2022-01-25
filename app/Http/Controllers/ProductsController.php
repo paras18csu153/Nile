@@ -33,18 +33,18 @@ class ProductsController extends Controller
 
         $product = new Product();
 
-        $product->setName($request['name']);
-        $product->setDescription($request['description']);
-        $product->setAdditionalInformation($request['additionalInformation']);
-        $product->setCategory($request['category']);
-        $product->setPrice($request['price']);
-        $product->setQuantity($request['quantity']);
+        $data["name"] = $request['name'];
+        $data["description"] = $request['description'];
+        $data["additionalInformation"] = $request['additionalInformation'];
+        $data["category"] = $request['category'];
+        $data["price"] = $request['price'];
+        $data["quantity"] = $request['quantity'];
 
         $imgPath = $request['image']->store('uploads', 'public');
-        $product->setImage($imgPath);
+        $product["image"] = $imgPath;
 
         $user = Auth::user();
-        $product->create($user);
+        $product->create($user, $data);
 
         return redirect('/home');
     }
@@ -62,15 +62,15 @@ class ProductsController extends Controller
     public function getAllPaginatedProducts(Request $request, $category = null){
         $product = new Product();
         
-        $product->setSortPrice($request["sort_price"]);
+        $data["sortPrice"] = $request["sort_price"];
 
         if($category){
-            $product->setCategory($category);
+            $data["category"] = $category;
         }
 
         $user = Auth::user();
 
-        $products = $product->getAllPaginatedProducts($user);
+        $products = $product->getAllPaginatedProducts($user, $data);
 
         return view('products.viewAll', [
             'products' => $products->appends(['sort_price' => $request["sort_price"], 'page' => $request["page"]]),
