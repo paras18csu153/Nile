@@ -41,7 +41,7 @@ class ProductsController extends Controller
         $data["quantity"] = $request['quantity'];
 
         $imgPath = $request['image']->store('uploads', 'public');
-        $product["image"] = $imgPath;
+        $data["image"] = $imgPath;
 
         $user = Auth::user();
         $product->create($user, $data);
@@ -66,6 +66,9 @@ class ProductsController extends Controller
 
         if($category){
             $data["category"] = $category;
+        }
+        else{
+            $data["category"] = null;
         }
 
         $user = Auth::user();
