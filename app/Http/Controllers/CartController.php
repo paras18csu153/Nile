@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Middleware\CheckIsBuyer;
 
 use App\Models\Cart;
+use Auth;
 
 class CartController extends Controller
 {
