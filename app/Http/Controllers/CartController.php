@@ -16,8 +16,9 @@ class CartController extends Controller
 
     public function store(Request $request){
         $cart = new Cart();
+        $user = Auth::user();
 
-        $cart->create();
+        $cart->create($user);
 
         return redirect('/cart');
     }

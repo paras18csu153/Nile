@@ -17,8 +17,7 @@ class Cart extends Model
         $this->id = $id;
     }
 
-    public function create(){
-        $user = Auth::user();
+    public function create($user){
         if(!$user->cart){
             try{
                 $user->cart()->create([]);
