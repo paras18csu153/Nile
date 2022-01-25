@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class CheckIsBuyer
+class CheckGuest
 {
     /**
      * Handle an incoming request.
@@ -16,14 +16,9 @@ class CheckIsBuyer
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->role != "SELLER"){
-            return $next($request);
-        }
-        else if(Auth::user()){
+        if(Auth::user() && Auth::user()->role == "SELLER"){
             return redirect('seller/dashboard');
         }
-        else{
-            return redirect('/home');
-        }
+        return $next($request);
     }
 }

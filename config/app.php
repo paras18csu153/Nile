@@ -53,6 +53,9 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'MAIL_FROM' => env('MAIL_FROM', 'not found in .env file'),
+    'MAIL_FROM_NAME' => env('MAIL_FROM_NAME', 'not found in .env file'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

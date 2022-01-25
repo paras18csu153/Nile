@@ -73,6 +73,7 @@ class CartProductService{
 
         if($this->type == 'ADD'){
             DB::table('cart_product')->where(['cart_id'=>$cart->id, 'product_id'=>$this->product_id])->increment('quantity');
+            Product::find($this->product_id)->decrement('quantity');
         }
 
         else{
@@ -84,6 +85,7 @@ class CartProductService{
             else{
                 DB::table('cart_product')->where(['cart_id'=>$cart->id, 'product_id'=>$this->product_id])->decrement('quantity');
             }
+            Product::find($this->product_id)->increment('quantity');
         }
     }
 }

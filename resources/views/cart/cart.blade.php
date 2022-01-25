@@ -16,7 +16,7 @@
         </form>
     </div>
 
-    @foreach($products as $product)
+    @foreach($products as $key => $product)
     <div class="row products">
         <div class="col-md-6 productsImages">
             <img id="dummy" src="/storage/{{ $product->image }}" alt="ProductImage.jpg" draggable="false">
@@ -28,11 +28,11 @@
             <h6>₹ {{ $product->price }}</h6>
             <form action="/cart/product" method="POST">
             {{ csrf_field() }}
-                <input type="hidden" name="type" id="type" value="">
+                <input type="hidden" name="type" class="type" value="">
                 <input type="hidden" name="id" value="{{ $product->id }}">
-                <button type="submit" onclick="setType('SUB')"><img src="{{ asset('images/svgs/sub.svg') }}" alt=""></button>
+                <button type="submit" onclick="setType('SUB', {{ $key }})"><img src="{{ asset('images/svgs/sub.svg') }}" alt=""></button>
                 <input id="quantity" type="text" value="{{$product['pivot']['quantity']}}" disabled>
-                <button type="submit" onclick="setType('ADD')"><img src="{{ asset('images/svgs/add.svg') }}" alt=""></button>
+                <button type="submit" onclick="setType('ADD', {{ $key }})"><img src="{{ asset('images/svgs/add.svg') }}" alt=""></button>
             </form>
         </div>
     </div>
@@ -62,8 +62,8 @@
         form.setAttribute('action', '/p/all/'+text);
     }
 
-    function setType(i){
-        var input = document.getElementById('type');
+    function setType(i, e){
+        var input = document.getElementsByClassName('type')[e];
         input.setAttribute('value', i);
     }
 </script>

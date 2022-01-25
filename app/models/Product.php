@@ -150,15 +150,15 @@ class Product extends Model
         return $products;
     }
 
-    public function updateQuantity(){
-        
-    }
-
     public function user(){
         return $this->belongsTo(User::class);
     }
 
     public function carts(){
         return $this->belongsToMany(Cart::class)->withPivot('quantity');
+    }
+
+    public function orders(){
+        return $this->belongsToMany(Order::class)->withPivot('quantity');
     }
 }

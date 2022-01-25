@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class CheckoutController extends Controller
 {
     public function store(Request $request){
-        dd($request["products"]);
+        $order = new Order();
+
+        $order->create($request);
+
+        return redirect('home');
     }
 }
