@@ -15,10 +15,10 @@ class CartProductController extends Controller
 
     public function store(Request $request){
         $cartproductservice = new CartProductService();
-        $cartproductservice->setProductId($request["id"]);
-        $cartproductservice->setQuantity($request["quantity"]);
+        $cartproduct["productId"] = $request["id"];
+        $cartproduct["quantity"] = $request["quantity"];
 
-        $cartproductservice->create();
+        $cartproductservice->create($cartproduct);
         
         return redirect('cart');
     }
@@ -30,10 +30,10 @@ class CartProductController extends Controller
     public function updateQuantity(Request $request){
         $cartproductservice = new CartProductService();
 
-        $cartproductservice->setProductId($request["id"]);
-        $cartproductservice->setType($request["type"]);
+        $cartproduct["productId"] = $request["id"];
+        $cartproduct["type"] = $request["type"];
 
-        $cartproductservice->updateQuantity();
+        $cartproductservice->updateQuantity($cartproduct);
         
         return redirect('cart');
     }
