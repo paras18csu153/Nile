@@ -11,11 +11,11 @@ class CartProductService{
     private $type;
     private $quantity;
 
-    function getProduct_id() {
+    function getProductId() {
         return $this->product_id;
     }
 
-    function setProduct_id($product_id) {
+    function setProductId($product_id) {
         $this->product_id = $product_id;
     }
 

@@ -15,7 +15,7 @@ class CartProductController extends Controller
 
     public function store(Request $request){
         $cartproductservice = new CartProductService();
-        $cartproductservice->setProduct_id($request["id"]);
+        $cartproductservice->setProductId($request["id"]);
         $cartproductservice->setQuantity($request["quantity"]);
 
         $cartproductservice->create();
@@ -30,7 +30,7 @@ class CartProductController extends Controller
     public function updateQuantity(Request $request){
         $cartproductservice = new CartProductService();
 
-        $cartproductservice->setProduct_id($request["id"]);
+        $cartproductservice->setProductId($request["id"]);
         $cartproductservice->setType($request["type"]);
 
         $cartproductservice->updateQuantity();
