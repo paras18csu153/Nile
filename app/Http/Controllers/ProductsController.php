@@ -70,7 +70,7 @@ class ProductsController extends Controller
 
         $user = Auth::user();
 
-        $products = $product->getAgetAllPaginatedProducts($user);
+        $products = $product->getAllPaginatedProducts($user);
 
         return view('products.viewAll', [
             'products' => $products->appends(['sort_price' => $request["sort_price"], 'page' => $request["page"]]),

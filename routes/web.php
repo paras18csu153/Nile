@@ -23,7 +23,7 @@ Route::get('/seller/dashboard', 'SellerDashboardController@index')->name('seller
 
 Route::get('/p', 'ProductsController@create');
 Route::post('/p', 'ProductsController@store');
-Route::get('/p/all/{category?}', 'ProductsController@getAll');
+Route::get('/p/all/{category?}', 'ProductsController@getAllPaginatedProducts');
 Route::get('/p/{id}', 'ProductsController@get');
 
 Route::get('/cart', 'CartProductController@view');
