@@ -11,8 +11,8 @@ class Cart extends Model
             try{
                 $user->cart()->create([]);
             }
-            catch(Exception $e){
-                abort(500);
+            catch(Throwable $th){
+                return $th;
             }
         }
     }

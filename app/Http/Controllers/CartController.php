@@ -19,7 +19,12 @@ class CartController extends Controller
         $cart = new Cart();
         $user = Auth::user();
 
-        $cart->create($user);
+        try{
+            $cart->create($user);
+        }
+        catch(Throwable $th){
+            return back()->with('message', 'Something went wrong!!');
+        }
 
         return redirect('/cart');
     }
