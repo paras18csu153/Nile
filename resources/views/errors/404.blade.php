@@ -31,6 +31,11 @@
                             <h2>Not Found</h2>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12 exception">
+                            <button style="width: 50%;" onclick="history.back()">Go Back</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
