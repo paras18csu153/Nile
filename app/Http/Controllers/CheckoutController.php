@@ -15,7 +15,9 @@ class CheckoutController extends Controller
 
         $request->user = $user;
 
-        $order->create($request);
+        $products = json_decode($request['products'], true);
+
+        $order->create($products);
 
         dispatch((new SendReminderEmail)->onQueue('highhello'));
         // dispatch((new SendReminderEmail));

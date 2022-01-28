@@ -11,10 +11,8 @@ class Order extends Model
         'payment_method', 'address'
     ];
 
-    public function create($request){
-        DB::transaction(function ($request) use ($request) {
-            $products = json_decode($request['products'], true);
-
+    public function create($products){
+        DB::transaction(function ($products) use ($products) {
             $cart = $request->user->cart;
             $order = $request->user->orders()->create([
                 'payment_method' => 'Cash On Delivery (COD)',
