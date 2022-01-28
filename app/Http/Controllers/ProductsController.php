@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Middleware\CheckIsSeller;
 
 use App\Models\Product;
+use App\Http\Requests\StoreProduct;
 use Auth;
 
 class ProductsController extends Controller
@@ -20,16 +21,16 @@ class ProductsController extends Controller
         return view('products.create');
     }
 
-    public function store(Request $request){
-        $data = $this->validate($request, [
-            'name' => 'required|string|min: 10|max:100',
-            'description' => 'required|string|min:50',
-            'additionalInformation' => '',
-            'category' => 'required|string',
-            'price' => 'required|numeric|max:999999',
-            'quantity' => 'required|numeric',
-            'image' => 'required|image'
-        ]);
+    public function store(StoreProduct $request){
+        // $data = $this->validate($request, [
+        //     'name' => 'required|string|min: 10|max:100',
+        //     'description' => 'required|string|min:50',
+        //     'additionalInformation' => '',
+        //     'category' => 'required|string',
+        //     'price' => 'required|numeric|max:999999',
+        //     'quantity' => 'required|numeric',
+        //     'image' => 'required|image'
+        // ]);
 
         $product = new Product();
 
