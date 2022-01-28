@@ -57,6 +57,13 @@ class Product extends Model
         return $products;
     }
 
+    public function getAllProducts($user, $data){
+        $cart = $user->cart;
+        $products = $cart->products()->orderBy("price", $data["sortPrice"])->get();
+        
+        return $products;
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }

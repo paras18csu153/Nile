@@ -75,6 +75,11 @@ class ProductsController extends Controller
 
         $products = $product->getAllPaginatedProducts($user, $data);
 
+        if($request->ajax()){
+            $products = $product->getAllProducts($user, $data);
+            return $products;
+        }
+
         return view('products.viewAll', [
             'products' => $products->appends(['sort_price' => $request["sort_price"], 'page' => $request["page"]]),
             'type' => $request["sort_price"]

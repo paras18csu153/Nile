@@ -12,10 +12,12 @@ class CheckoutController extends Controller
     public function store(Request $request){
         $order = new Order();
         $user = Auth::user();
+        $cart = $user->cart;
 
-        $request->user = $user;
+        $data->user = $user;
+        $data->products = $cart->products;
 
-        $order->create($request);
+        $order->create($data);
 
         dispatch((new SendReminderEmail)->onQueue('highhello'));
         // dispatch((new SendReminderEmail));

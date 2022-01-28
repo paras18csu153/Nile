@@ -13,8 +13,6 @@ class Order extends Model
 
     public function create($request){
         DB::transaction(function ($request) use ($request) {
-            $products = json_decode($request['products'], true);
-
             $cart = $request->user->cart;
             $order = $request->user->orders()->create([
                 'payment_method' => 'Cash On Delivery (COD)',
@@ -24,8 +22,7 @@ class Order extends Model
             $data=[];
             $entry=[];
     
-            foreach($products as $p){
-                $p = (object)$p;
+            foreach($request->products as $p){
                 $entry["order_id"] = $order->id;
                 $entry["product_id"] = $p->id;
                 $entry["quantity"] = $p->pivot['quantity'];
