@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Enum\Role;
 
 class Product extends Model
 {
@@ -18,7 +19,7 @@ class Product extends Model
     public function get($id, $user){
         $product = Product::findOrFail($id);
 
-        if($user && $user->role=="SELLER"){
+        if($user && $user->role==Role::seller){
             if($product->user_id != $user->id){
                 abort(403, "Unauthorized Access.");
             }
@@ -33,7 +34,7 @@ class Product extends Model
             abort(404);
         }
 
-        if(!$user || ($data["category"] && $user->role != 'SELLER')){
+        if(!$user || ($data["category"] && $user->role != Role::seller)){
             if($data["sortPrice"] == 'DESC'){
                 $products = Product::where('name', 'like', $data["category"].'%')->orWhere('category', 'like', $data["category"].'%')->orderBy('price', $data["sortPrice"])->paginate(10);
                 return $products;
@@ -43,7 +44,7 @@ class Product extends Model
             return $products;
         }
 
-        if($data["category"] && $user->role == 'SELLER'){
+        if($data["category"] && $user->role == Role::seller){
             abort(403, "Unauthorized Access!!");
         }
 

@@ -1,0 +1,24 @@
+<!-- @section('content')
+<div class="container" id="hero-container">
+    @foreach(Auth::user()->products as $product)
+    <p>{{ $product->name }}</p>
+    @endforeach
+</div>
+
+<script>
+    var loadFile = function (event) {
+        var dummy = document.getElementById("dummy");
+        var imageP = document.getElementById("image-p");
+        var imgInp = document.getElementById("image");
+        const [file] = imgInp.files;
+        if (file && file.size < 200000) {
+            dummy.src = URL.createObjectURL(file);
+            imageP.style.display="none";
+        }
+    };
+
+    function redirectToDashboard(){
+        location.href = '/home';
+    }
+</script>
+@endsection -->

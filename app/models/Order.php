@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use App\Models\OrderProduct;
 
 class Order extends Model
 {
@@ -30,7 +31,8 @@ class Order extends Model
                 $entry=[];
             }
 
-            DB::table("order_product")->insert($data);
+            $orderProduct = new OrderProduct();
+            $orderProduct->insertMultiple($data);
     
             $cart->products()->detach();
         }, 5);

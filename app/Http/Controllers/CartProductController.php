@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\CartProductService;
 use App\Http\Middleware\CheckIsBuyer;
+use App\Models\CartProduct;
+use Auth;
 
 class CartProductController extends Controller
 {
@@ -14,11 +15,13 @@ class CartProductController extends Controller
     }
 
     public function store(Request $request){
-        $cartproductservice = new CartProductService();
+        $cartProduct = new CartProduct();
         $cartproduct["productId"] = $request["id"];
         $cartproduct["quantity"] = $request["quantity"];
 
-        $cartproductservice->create($cartproduct);
+        $user = Auth::user();
+
+        $cartProduct->create($cartproduct, $user);
         
         return redirect('cart');
     }
@@ -28,19 +31,21 @@ class CartProductController extends Controller
     }
 
     public function updateQuantity(Request $request){
-        $cartproductservice = new CartProductService();
+        $cartProduct = new CartProduct();
+        $user = Auth::user();
 
         $cartproduct["productId"] = $request["id"];
         $cartproduct["type"] = $request["type"];
 
-        $cartproductservice->updateQuantity($cartproduct);
+        $cartProduct->updateQuantity($cartproduct, $user);
         
         return redirect('cart');
     }
 
     public function view(){
-        $cartproductservice = new CartProductService();
-        $products = $cartproductservice->get();
+        $cartProduct = new CartProduct();
+        $cart = Auth::user()->cart;
+        $products = $cart->products()->get();
 
         $total = 0;
 

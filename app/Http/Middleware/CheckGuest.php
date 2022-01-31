@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use App\Enum\Role;
 
 class CheckGuest
 {
@@ -16,7 +17,8 @@ class CheckGuest
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->role == "SELLER"){
+        $role = new Role();
+        if(Auth::user() && Auth::user()->role == Role::seller){
             return redirect('seller/dashboard');
         }
         return $next($request);

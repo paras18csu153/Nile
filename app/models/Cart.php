@@ -8,12 +8,7 @@ class Cart extends Model
 {
     public function create($user){
         if(!$user->cart){
-            try{
-                $user->cart()->create([]);
-            }
-            catch(Throwable $th){
-                return $th;
-            }
+            $user->cart()->create([]);
         }
     }
 
