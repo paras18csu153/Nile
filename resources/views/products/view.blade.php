@@ -95,7 +95,6 @@
         @endif
         <form id="add-cart-form" style="display:none" action="/cart/products" method="POST">
         {{ csrf_field() }}
-            <input type="hidden" name="quantity" value="1">
             <input type="hidden" name="id" value="{{ $product->id }}">
         </form>
     </div>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Middleware\CheckIsBuyer;
 use App\Models\CartProduct;
 use Auth;
+use App\Http\Requests\AddSubProduct;
+use App\Http\Requests\AddProductCart;
 
 class CartProductController extends Controller
 {
@@ -14,7 +16,7 @@ class CartProductController extends Controller
         $this->middleware(CheckIsBuyer::class);
     }
 
-    public function store(Request $request){
+    public function store(AddProductCart $request){
         $cartProduct = new CartProduct();
         $cartproduct["productId"] = $request["id"];
         $cartproduct["quantity"] = 1;
@@ -30,7 +32,7 @@ class CartProductController extends Controller
         return redirect('cart');
     }
 
-    public function updateQuantity(Request $request){
+    public function updateQuantity(AddSubProduct $request){
         $cartProduct = new CartProduct();
         $user = Auth::user();
 

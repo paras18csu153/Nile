@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Http\Requests\StoreProduct;
 use Auth;
 use App\Enum\Role;
+use App\Http\Requests\SearchProduct;
 
 class ProductsController extends Controller
 {
@@ -61,7 +62,7 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function getAllPaginatedProducts(Request $request, $category = null){
+    public function getAllPaginatedProducts(SearchProduct $request, $category = null){
         $product = new Product();
         $user = Auth::user();
         

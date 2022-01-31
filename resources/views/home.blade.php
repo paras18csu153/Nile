@@ -63,7 +63,7 @@
 
     <form class="row categorySearch" method="GET" action="/p/all">
         <div class="col-md-11">
-            <input type="text" placeholder="Search ..." class="pad" autocomplete="off"/>
+            <input type="text" placeholder="Search ..." name="search" class="pad" maxlength=100 autocomplete="off"/>
         </div>
         <div class="col-md-1">
             <button type="submit" class="pad" id="btn" onclick="changeAction()">Search</button>
