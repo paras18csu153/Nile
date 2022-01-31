@@ -21,6 +21,8 @@ class CartProduct extends Model
     }
 
     public function create($cartproduct, $user){
+        $cart = $user->cart;
+        
         if(!$cart){
             $cart = new Cart();
             $cart->create($user);
