@@ -29,6 +29,7 @@ class CartProduct extends Model
         }
 
         $user->cart->products()->attach($cartproduct["productId"], ["quantity"=>1]);
+        Product::find($cartproduct["productId"])->decrement('quantity');
     }
 
     public function getProducts($user){
