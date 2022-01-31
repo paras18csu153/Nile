@@ -14,6 +14,7 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $cart = $user->cart;
 
+        $data = new \stdClass();
         $data->user = $user;
         $data->products = $cart->products;
 
