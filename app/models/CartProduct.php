@@ -21,8 +21,9 @@ class CartProduct extends Model
     }
 
     public function create($cartproduct, $user){
-        if(!$user->cart){
-            $user->cart()->create([]);
+        if(!$cart){
+            $cart = new Cart();
+            $cart->create($user);
         }
 
         $user->cart->products()->attach($cartproduct["productId"], ["quantity"=>1]);
