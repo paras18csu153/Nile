@@ -9,6 +9,7 @@ use App\Http\Middleware\CheckIsSeller;
 use App\Models\Product;
 use App\Http\Requests\StoreProduct;
 use Auth;
+use App\Enum\Role;
 
 class ProductsController extends Controller
 {
@@ -62,17 +63,19 @@ class ProductsController extends Controller
 
     public function getAllPaginatedProducts(Request $request, $category = null){
         $product = new Product();
+        $user = Auth::user();
         
         $data["sortPrice"] = $request["sort_price"];
 
         if($category){
             $data["category"] = $category;
+            if($user->role == Role::seller){
+                abort(403);
+            }
         }
         else{
             $data["category"] = null;
         }
-
-        $user = Auth::user();
 
         $products = $product->getAllPaginatedProducts($user, $data);
 

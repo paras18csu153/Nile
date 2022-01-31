@@ -17,27 +17,15 @@ class CartProduct extends Model
     }
 
     public function get($cartId, $productId){
-        CartProduct::where(['cart_id'=>$cartId, 'product_id'=>$productId])->get();
+        return CartProduct::where(['cart_id'=>$cartId, 'product_id'=>$productId])->get();
     }
 
     public function create($cartproduct, $user){
-        $product = Product::find($cartproduct["productId"]);
-        
-        if(!$cart){
+        if(!$user->cart){
             $user->cart()->create([]);
         }
-        $cart = $user->cart;
 
-        // $products = $cart->products->toArray();
-        // foreach($products as $p){
-        //     if($p["id"] == $product->id){
-        //         $cartProduct = new CartProduct();
-        //         $cartProduct->findAndIncreaseQuantity($cart->id, $p["id"]);
-        //         return;
-        //     }
-        // }
-
-        $cart->products()->attach($product, ["quantity"=>1]);
+        $user->cart->products()->attach($cartproduct["productId"], ["quantity"=>1]);
     }
 
     public function getProducts($user){
@@ -63,7 +51,7 @@ class CartProduct extends Model
 
         else{
             $product = Product::find($cartproduct["productId"]);
-            $cart_product = $this->getProducts($cart->id, $cartproduct["productId"], $user);
+            $cart_product = $this->get($cart->id, $cartproduct["productId"]);
             if($cart_product[0]->quantity == 1){
                 $cart->products()->detach($product);
             }

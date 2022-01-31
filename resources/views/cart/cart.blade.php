@@ -16,7 +16,7 @@
         </form>
     </div>
 
-    <div class="row" id="products">
+    <div class="row no-margin" id="products">
     @foreach($products as $key => $product)
     <div class="row products">
         <div class="col-md-6 productsImages">

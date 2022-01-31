@@ -17,7 +17,7 @@ class CartProductController extends Controller
     public function store(Request $request){
         $cartProduct = new CartProduct();
         $cartproduct["productId"] = $request["id"];
-        $cartproduct["quantity"] = $request["quantity"];
+        $cartproduct["quantity"] = 1;
 
         $user = Auth::user();
 
