@@ -57,6 +57,10 @@ class ProductsController extends Controller
         $user = Auth::user();
         $product = $product->get($id, $user);
 
+        if($request->is('api/*')){
+            return $product;
+        }
+
         return view('products.view', [
             'product' => $product
         ]);
