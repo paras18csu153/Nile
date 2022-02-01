@@ -114,7 +114,13 @@ class ProductsController extends Controller
             $data["category"] = null;
         }
 
+        try{
         $products = $product->getAll($data);
+        }catch (Exception $e){
+            Response::json([
+                'message' => 'Internal Server Error'
+            ], 500);
+        }
 
         return $products;
     }
