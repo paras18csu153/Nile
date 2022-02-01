@@ -1,0 +1,24 @@
+Login/Signup
+Session management
+Show all products (paginated)
+Filtering
+Sorting (Price)
+Product info page
+Cart management
+Checkout form
+Order history
+Search products (cateogry/name wise)
+Category wise analysis (optional) task scheduling
+Accessor Mutator
+print_r,
+Queues
+Shorter in foreach
+
+Get Set remove
+job empty - done
+check in command - yesterday - done
+naming convention getallpagination - done
+naming convention in getter setter - done
+Relationships - done
+user details in models - done
+foreach - encode decode - done

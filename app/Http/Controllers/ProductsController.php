@@ -11,12 +11,13 @@ use App\Http\Requests\StoreProduct;
 use Auth;
 use App\Enum\Role;
 use App\Http\Requests\SearchProduct;
+use App\Http\Requests\ProductRequest;
 
 class ProductsController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth')->except('get', 'getAllPaginatedProducts');
-        $this->middleware(CheckIsSeller::class)->except('get', 'getAllPaginatedProducts');
+        $this->middleware('auth')->except('get', 'getAllProducts', 'getAllPaginatedProducts');
+        $this->middleware(CheckIsSeller::class)->except('get', 'getAllProducts', 'getAllPaginatedProducts');
     }
 
     public function create(){
@@ -93,5 +94,28 @@ class ProductsController extends Controller
             'products' => $products->appends(['sort_price' => $request["sort_price"], 'page' => $request["page"]]),
             'type' => $request["sort_price"]
         ]);
+    }
+
+    public function getAllProducts(ProductRequest $request){
+        $product = new Product();
+        
+        $data["offset"] = $request["page"] - 1;
+        if($request["sort_price"]){
+            $data["sortPrice"] = $request["sort_price"];
+        }
+        else{
+            $data["sortPrice"] = "ASC";
+        }
+
+        if($request["category"]){
+            $data["category"] = $request["category"];
+        }
+        else{
+            $data["category"] = null;
+        }
+
+        $products = $product->getAll($data);
+
+        return $products;
     }
 }

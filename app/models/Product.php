@@ -58,6 +58,28 @@ class Product extends Model
         return $products;
     }
 
+    public function getAll($data){
+        if($data["category"]){
+            if($data["sortPrice"] == 'DESC'){
+                $products = Product::where('name', 'like', $data["category"].'%')->orWhere('category', 'like', $data["category"].'%')->orderBy('price', $data["sortPrice"])->offset($data["offset"])->limit(10)->get();
+                return $products;
+            }
+        
+            $products = Product::where('name', 'like', $data["category"].'%')->orWhere('category', 'like', $data["category"].'%')->orderBy('price')->offset($data["offset"])->limit(10)->get();
+            return $products;
+        }
+
+
+        if($data["sortPrice"] == 'DESC'){
+            $products = $user->products()->orderBy('price', $data["sortPrice"])->offset($data["offset"])->limit(10)->get();
+            return $products;
+        }
+        
+        $products = Product::orderBy('price')->offset($data["offset"])->limit(10)->get();
+        
+        return $products;
+    }
+
     public function getAllProducts($user, $data){
         $cart = $user->cart;
         $products = $cart->products()->orderBy("price", $data["sortPrice"])->get();
